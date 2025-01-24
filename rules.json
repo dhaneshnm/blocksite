@@ -31,5 +31,16 @@
       "urlFilter": "twitter.com",
       "resourceTypes": ["main_frame"]
     }
+  },
+  {
+    "id": 4,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "urlFilter": "ndtv.com",
+      "resourceTypes": ["main_frame"]
+    }
   }
 ]
