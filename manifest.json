@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "Website Blocker",
-  "version": "1.0",
-  "description": "Blocks specific websites.",
-  "permissions": ["declarativeNetRequest"],
+  "version": "1.1",
+  "description": "Blocks specific websites with an editable blocklist.",
+  "permissions": ["declarativeNetRequest", "storage"],
   "host_permissions": ["*://*/*"],
   "declarative_net_request": {
     "rule_resources": [
@@ -13,5 +13,6 @@
         "path": "rules.json"
       }
     ]
-  }
+  },
+  "options_page": "options.html"
 }
