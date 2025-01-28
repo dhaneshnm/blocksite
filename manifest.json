@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Website Blocker",
-  "version": "1.1",
+  "version": "1.2",
   "description": "Blocks specific websites with an editable blocklist.",
   "permissions": ["declarativeNetRequest", "storage"],
   "host_permissions": ["*://*/*"],
