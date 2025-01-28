@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="simple.css" />
+    <title>Website Blocker</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 10px;
+        width: 300px;
+      }
+      input {
+        margin-right: 10px;
+        width: 200px;
+      }
+      button {
+        margin: 5px 0;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Website Blocker</h3>
+    <input
+      id="currentSite"
+      type="text"
+      placeholder="Enter URL or click 'Add Current'"
+    />
+    <button id="addCurrentSite">Add Current</button>
+    <h4>Blocked Sites:</h4>
+    <ul id="blockedList"></ul>
+    <script src="popup.js"></script>
+  </body>
+</html>
