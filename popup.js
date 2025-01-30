@@ -51,21 +51,30 @@ function renderBlockedSites(blockedSites) {
 
 // Update dynamic rules
 function updateDynamicRules(blockedSites) {
-  const rules = blockedSites.map((site, index) => ({
-    id: index + 1,
-    priority: 1,
-    action: { type: "block" },
-    condition: { urlFilter: site, resourceTypes: ["main_frame"] },
-  }));
+  // Get existing rule IDs to remove them first
+  chrome.declarativeNetRequest.getDynamicRules((existingRules) => {
+    const existingRuleIds = existingRules.map((rule) => rule.id);
 
-  chrome.declarativeNetRequest.updateDynamicRules({
-    removeRuleIds: rules.map((rule) => rule.id),
-    addRules: rules,
+    // Create new rules from the updated blocklist
+    const newRules = blockedSites.map((site, index) => ({
+      id: index + 1,
+      priority: 1,
+      action: { type: "block" },
+      condition: { urlFilter: site, resourceTypes: ["main_frame"] },
+    }));
+
+    // Update rules: remove old ones, then add new ones
+    chrome.declarativeNetRequest.updateDynamicRules({
+      removeRuleIds: existingRuleIds,
+      addRules: newRules,
+    });
   });
 }
 
 // Auto-fill the current URL in the input
 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-  const url = new URL(tabs[0].url);
-  currentSiteInput.value = url.hostname;
+  if (tabs.length > 0) {
+    const url = new URL(tabs[0].url);
+    currentSiteInput.value = url.hostname;
+  }
 });
