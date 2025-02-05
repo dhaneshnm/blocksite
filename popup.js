@@ -74,7 +74,11 @@ function updateDynamicRules(blockedSites) {
 // Auto-fill the current URL in the input
 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
   if (tabs.length > 0) {
-    const url = new URL(tabs[0].url);
-    currentSiteInput.value = url.hostname;
+    try {
+      const url = new URL(tabs[0].url);
+      currentSiteInput.value = url.hostname;
+    } catch {
+      // TODO : handle error'
+    }
   }
 });
